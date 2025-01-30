@@ -1,5 +1,6 @@
 trigger: 
 - main
+
 stages:
 - stage: Build
   jobs:
@@ -19,18 +20,17 @@ stages:
         ArtifactName: 'drop'
         publishLocation: 'Container'
 
-
 - stage: Deploy
   jobs:
   - job: Deploy
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-  - task: AzureRmWebAppDeployment@4
-    inputs:
-      ConnectionType: 'AzureRM'
-      azureSubscription: 'Visual Studio Enterprise Subscription (048b7f59-2227-41a3-ae50-e594357e418a)'
-      appType: 'webAppLinux'
-      WebAppName: 'youtubeclone22'
-      packageForLinux: '$(System.DefaultWorkingDirectory)/build'
-      RuntimeStack: 'STATICSITE|1.0'
+    - task: AzureRmWebAppDeployment@4
+      inputs:
+        ConnectionType: 'AzureRM'
+        azureSubscription: 'Visual Studio Enterprise Subscription (048b7f59-2227-41a3-ae50-e594357e418a)'
+        appType: 'webAppLinux'
+        WebAppName: 'youtubeclone22'
+        packageForLinux: '$(System.DefaultWorkingDirectory)/build'
+        RuntimeStack: 'STATICSITE|1.0'
