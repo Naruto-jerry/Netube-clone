@@ -1,7 +1,6 @@
 trigger: 
 - main
-
-stage:
+stages:
 - stage: Build
   jobs:
   - job: Build
